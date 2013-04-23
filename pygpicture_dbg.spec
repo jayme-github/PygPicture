@@ -35,7 +35,7 @@ coll = COLLECT(exe,
                a.binaries,
                a.zipfiles,
                a.datas,
-			   files,
+               files,
                strip=None,
                upx=True,
                name=os.path.join('dist', 'pygpicture_dbg'))

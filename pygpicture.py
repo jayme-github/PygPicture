@@ -50,11 +50,8 @@ def main():
         SEARCHPATH.insert(0, os.path.join( win32com.client.Dispatch('WScript.Shell').SpecialFolders('Desktop'), 'Games' ) )
 
         # Fullscreen video
-        #video_flags = pl.OPENGL|pl.DOUBLEBUF|pl.FULLSCREEN
-        #max_fullscreen_mode = pygame.display.list_modes( 0, video_flags )[0]
-        
-        video_flags = pl.OPENGL|pl.DOUBLEBUF
-        max_fullscreen_mode = (800,600)
+        video_flags = pl.OPENGL|pl.DOUBLEBUF|pl.FULLSCREEN
+        max_fullscreen_mode = pygame.display.list_modes( 0, video_flags )[0]
 
     elif platform.system() == 'Linux':
         #video_flags = pl.OPENGL|pl.DOUBLEBUF|pl.FULLSCREEN
