@@ -72,7 +72,7 @@ class CoverFlow(object):
     '''
     def __init__(self, lnkpath = None):
         self.logger = logging.getLogger( logger.name + '.' + type(self).__name__ )
-        self.zoom = -5.0 #distance to camera (zoom)
+        self.zoom = -7.0 #distance to camera (zoom)
         self.textures = []
         self.rd = [1.9,  0.0, -0.5] #right delta
         self.ld = [-1.9,  0.0, -0.5] #left delta

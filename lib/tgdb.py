@@ -56,8 +56,8 @@ class Game(TgdbBase):
 
     def saveBoxart(self, path):
         url = self.getBoxartUrl()
-        self.logger.debug( 'saveBoxart(%s) url: %s' % (path, url) )
         if url:
+            self.logger.debug( 'saveBoxart(%s) url: %s' % (path, url) )
             with open(path, 'wb') as fp:
                 shutil.copyfileobj( self._loadUrl( url ), fp )
             return path

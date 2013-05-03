@@ -7,7 +7,7 @@ import platform
 import subprocess
 
 import logging
-LEVEL = logging.DEBUG
+LEVEL = logging.ERROR
 FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logging.basicConfig( filename='pygpicture.log', filemode='w',
                      format=FORMAT,
@@ -38,11 +38,12 @@ def shutdown():
     logger.info( 'Shutting down system' )
     print 'Shutting down system'
     if platform.system() == 'Windows':
-        subprocess.call( ['shutdown.exe', '/f', '/s', '/t', '30'] )
+        subprocess.call( ['shutdown.exe', '/f', '/s', '/t', '5'] )
 
 
 def main():
     pygame.init()
+    pygame.joystick.init()
     
     logger.info( 'Running on ' + platform.system() )
     if platform.system() == 'Windows':
@@ -59,6 +60,8 @@ def main():
         # Window mode
         video_flags = pl.OPENGL|pl.DOUBLEBUF
         max_fullscreen_mode = (800,600)
+
+    logger.info( 'Selected video mode: ' + str(max_fullscreen_mode) )
 
     lnkpath = None
     for path in SEARCHPATH:
@@ -100,13 +103,20 @@ def main():
                 break
         
         # Check for new / changed joysticks
-        # FIXME: UNTESTED This may take some time, maybe we should just do this if joystick count has changed?
-        for i in xrange(pygame.joystick.get_count()):
-            joystick = pygame.joystick.Joystick(i)
-            if not joystick.get_init():
-                logger.info( 'New joystick (ID: %d): "%s"' % (i, joystick.get_name()) )
-                joystick.init()
-                joysticks.append( joystick )
+        # FIXME: Adding new joysticks does not work, pygame.joystick.get_count() never changes whithout a .quit() .init() cycle
+        if len(joysticks) == 0 or len(joysticks) < pygame.joystick.get_count():
+            logger.debug( 'No joystick connected/initialized yet, trying to find new ones' )
+            pygame.joystick.quit()
+            joysticks = list()
+            pygame.joystick.init()
+            if pygame.joystick.get_count() > 0:
+                logger.debug( 'Found %d joysticks, trying to initialize' % pygame.joystick.get_count() )
+                for i in xrange(pygame.joystick.get_count()):
+                    joystick = pygame.joystick.Joystick(i)
+                    if not joystick.get_init():
+                        logger.info( 'New joystick (ID: %d): "%s"' % (i, joystick.get_name()) )
+                        joystick.init()
+                        joysticks.append( joystick )
 
         jret = cf.handle_joystick( joysticks )
         if jret == 1:
