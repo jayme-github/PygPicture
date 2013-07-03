@@ -5,15 +5,14 @@
 I was sick of searching the mouse to select the game I wanted to play. BIG PICTURE was no option since I don't like/want the overhead (Steam) on my box.
 So I started searching and ended up writing my own little tool ... PygPicture!
 
-Seems like github removed the possibility to upload/download files/releases so I uploaded a W32 exe (genereted with PyInstaller) to MEGA: [Download](https://mega.co.nz/#!iMtgiJxb!dWmqWj5Ur0CfDSMKqp4N9AwW71QydTQEzn4HMvxx-84)
-
+Please find the latest W32 exe (genereted with PyInstaller) whithin the [Releases](https://github.com/jayme-github/PygPicture/releases) section.
 
 ![ScreenShot](https://github.com/jayme-github/PygPicture/raw/master/screenshot.jpg)
 
 
 
 # Installation
-* [Download](https://mega.co.nz/#!iMtgiJxb!dWmqWj5Ur0CfDSMKqp4N9AwW71QydTQEzn4HMvxx-84) and unzip
+* [Download](https://github.com/jayme-github/PygPicture/releases) the recent PygPicture release and unzip
 * Extract pygpicture.zip somewhere on your system ( *C:\Programm files (x86)\PygPicture\*  for example )
 * Create a folder "Games" on your desktop or in the directory where you stored the pygpicture.exe
 * Put links to your games into that folder
